@@ -1,0 +1,25 @@
+[project]
+name = "ic"
+version = "0.1"
+description = "Projeto de DeepLearning"
+authors = [
+    {name = "Arthur Klein",email = "arthurklein777.ak@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+
+
+dependencies = [
+    "torch (>=2.15.0,<3.0.0) ; python_version >= \"3.11\" and python_version < \"3.14\"",
+    "torchvision (>=0.29.2,<0.30.0) ; python_version >= \"3.11\" and python_version < \"3.14\"",
+    "segmentation-models-pytorch (>=0.6.0,<0.7.0) ; python_version >= \"3.11\" and python_version < \"3.14\"",
+    "albumentations (>=2.0.8,<3.0.0) ; python_version >= \"3.11\" and python_version < \"3.14\"",
+    "opencv-python (>=5.0.0.93,<6.0.0.0) ; python_version >= \"3.11\" and python_version < \"3.14\"",
+    "pillow (>=13.0.0,<14.0.0) ; python_version >= \"3.11\" and python_version < \"3.14\"",
+    "tqdm (>=4.70.1,<5.0.0) ; python_version >= \"3.11\" and python_version < \"3.14\""
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

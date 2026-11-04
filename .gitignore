@@ -1,0 +1,33 @@
+#Ignorar as pastas de dados: 
+data/
+*.png
+*.jpg
+*.jpeg
+*.tiff
+*.bmp
+#Ignorar pesos e Checkpoints do modelo
+*.pth
+*.pt
+*.onnx
+*.ckpt
+#Ignorar Ambientes Virtuais 
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+#Ignorar logs
+runs/
+wandb/
+*.log
+#Ignorar SO
+.DS_Store
+Thumbs.db
+#Ignorar poetry
+.poetry/
