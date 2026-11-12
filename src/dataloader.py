@@ -50,5 +50,6 @@ if __name__ == "__main__":
     print(
         f"Lote de Máscaras : {masks_batch.shape}  -> [Batch Size, Canais, Altura, Largura]"
     )
-    
+
+
     
