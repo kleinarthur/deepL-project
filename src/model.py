@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-import matplotlib.pyplot as plt
 
 class DoubleConv(nn.Module):
     def __init__(self, in_channels, out_channels):
@@ -94,50 +93,3 @@ class UNet(nn.Module):
         x = self.sigmoid(x)
 
         return x
-
-if __name__ == "__main__":
-
-    y, x = torch.meshgrid(
-        torch.arange(256), torch.arange(256), indexing="ij"
-    )
-
-    dist_centro = torch.sqrt((x - 128) ** 2 + (y - 128) ** 2)
-    placa_mask = dist_centro < 110
-
-    colonia1 = torch.sqrt((x - 90) ** 2 + (y - 100) ** 2) < 18
-    colonia2 = torch.sqrt((x - 160) ** 2 + (y - 140) ** 2) < 22
-    colonia3 = torch.sqrt((x - 120) ** 2 + (y - 170) ** 2) < 12
-
-    x_dummy = torch.zeros((1, 3, 256, 256))
-
-    x_dummy[0, 0, placa_mask] = 0.4
-    x_dummy[0, 1, placa_mask] = 0.1
-    x_dummy[0, 2, placa_mask] = 0.1
-
-    for col in [colonia1, colonia2, colonia3]:
-        x_dummy[0, 0, col] = 0.95
-        x_dummy[0, 1, col] = 0.90
-        x_dummy[0, 2, col] = 0.40
-
-    model = UNet(in_channels=3, out_channels=1)
-    model.eval()
-
-    with torch.no_grad():
-        output = model(x_dummy)
-
-    img_plot = x_dummy[0].permute(1, 2, 0).numpy()
-    mask_plot = output[0, 0].numpy()
-
-    fig, axes = plt.subplots(1, 2, figsize=(10, 5))
-
-    axes[0].imshow(img_plot)
-    axes[0].set_title("Entrada (Placa com Círculos Sintéticos)")
-    axes[0].axis("off")
-
-    axes[1].imshow(mask_plot, cmap="gray")
-    axes[1].set_title("Saída da U-Net (Não Treinada)")
-    axes[1].axis("off")
-
-    plt.tight_layout()
-    plt.savefig("resultado_teste.png")
-    print("Imagem gerada e salva como 'resultado_teste.png'.")
