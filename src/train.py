@@ -15,10 +15,10 @@ def train_one_epoch(model, dataloader, optimizer, criterion, device):
         images = images.to(device)
         masks = masks.to(device)
 
-        optimizer.zero_grad()
+        optimizer.zero_grad() #para o pc aguentar
         outputs = model(images)
         loss = criterion(outputs, masks)
-        loss.backward()
+        loss.backward() #backpropagation
         optimizer.step()
 
         running_loss += loss.item() * images.size(0)
@@ -31,7 +31,7 @@ def train():
 
     model = UNet(in_channels=3, out_channels=1).to(device)
     criterion = BCEDiceLoss(bce_weight=0.5)
-    optimizer = optim.Adam(model.parameters(), lr=1e-4)
+    optimizer = optim.Adam(model.parameters(), lr=1e-4) #ajuste de pesos 
 
     dataset = PlacasDataset(
         images_dir="data/train/images", masks_dir="data/train/masks"

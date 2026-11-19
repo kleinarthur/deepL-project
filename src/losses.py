@@ -4,7 +4,7 @@ import torch.nn as nn
 
 class DiceLoss(nn.Module):
 
-    def __init__(self, smooth=1e-6):
+    def __init__(self, smooth=1e-6): #divisao por zero
         super(DiceLoss, self).__init__()
         self.smooth = smooth
 

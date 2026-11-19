@@ -5,15 +5,15 @@ class DoubleConv(nn.Module):
     def __init__(self, in_channels, out_channels):
         super(DoubleConv, self).__init__()
         self.conv = nn.Sequential(
-            nn.Conv2d(
+            nn.Conv2d( #lupa
                 in_channels,
                 out_channels,
-                kernel_size=3,
-                stride=1,
-                padding=1,
-                bias=False,
+                kernel_size=3, #janela 3x3
+                stride=1, #pixel a pixel
+                padding=1, #cria moldura pro centro chegar à última camada (se não fica 254**2)
+                bias=False, #peso ao output 
             ),
-            nn.BatchNorm2d(out_channels),
+            nn.BatchNorm2d(out_channels), # 
             nn.ReLU(inplace=True),
             nn.Conv2d(
                 out_channels,
@@ -89,7 +89,7 @@ class UNet(nn.Module):
         x = torch.cat((skip1, x), dim=1)
         x = self.dec1(x)
 
-        x = self.final_conv(x)
-        x = self.sigmoid(x)
+        x = self.final_conv(x) # 32 -> 1    
+        x = self.sigmoid(x) 
 
         return x

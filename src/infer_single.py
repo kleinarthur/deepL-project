@@ -45,13 +45,13 @@ def predict_single(image_path, model_path="data/results/unet_petri.pth"):
 
     plt.tight_layout()
     plt.savefig("data/results/resultado_inferencia_unica.png")
-    print("Relatorio visual salvo em 'data/results/resultado_inferencia_unica.png'.")
+    print("Relatorio salvo")
 
 
 if __name__ == "__main__":
     path = (
         sys.argv[1]
         if len(sys.argv) > 1
-        else "data/val/images/imagem_exemplo.png"
+        else "data/val/images/7-11_PM_P1C1_Control.jpg"
     )
     predict_single(path)
